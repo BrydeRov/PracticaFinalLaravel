@@ -12,6 +12,12 @@
     @extends('layouts.app')
     
     @section('content')
+    <div class="form-row">
+        <div class="input-group mb-3" style="padding: 10px 15%;">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon1">Buscar</button>
+            <input type="text" value="Buscar" class="form-control" placeholder="Buscar videojuego..." aria-label="Example text with button addon" aria-describedby="button-addon1">
+          </div>
+    </div>
     <div class="container">
 
         <div class="container">
@@ -72,7 +78,9 @@
                             </td>
                             <td>{{ $juego->NombreJuego }}</td>
                             <td>{{ $juego->Clasificacion }}</td>
-                            <td>{{ $juego->Consola }}</td>
+                            @if ($juego->consola_id)
+                                <td>{{ $juego->consola->NombreConsola }}
+                            @endif
                             <td>${{ $juego->PrecioAd }}</td>
                             <td>${{ $juego->PrecioVen }}</td>
 

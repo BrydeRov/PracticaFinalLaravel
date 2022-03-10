@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Juegos;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Consolas;
 use Illuminate\Http\Request;
 
 class JuegosController extends Controller
@@ -17,7 +18,9 @@ class JuegosController extends Controller
     {
         //
         $datos['juegos']=Juegos::paginate(5);
-        return view('juegos.index' , $datos);
+        return view('juegos.index' , $datos , [
+            'consolas' => Consolas::pluck('NombreConsola' , 'id'),
+        ]);
     }
 
     /**
@@ -28,7 +31,10 @@ class JuegosController extends Controller
     public function create()
     {
         //
-        return view('juegos.create');
+        
+        return view('juegos.create' ,[
+            'consolas' => Consolas::pluck('NombreConsola' , 'id'),
+        ]);
         
 
     }
@@ -49,7 +55,7 @@ class JuegosController extends Controller
         }
         Juegos::insert($datosJuego);
         response()->json($datosJuego);
-        return redirect(route('juegos.index'))->with('status' , 'Editado con éxito');
+        return redirect(route('juegos.index'))->with('status' , 'Guardado con éxito');
     }
 
     /**
@@ -73,7 +79,9 @@ class JuegosController extends Controller
     {
         //
         $juego = Juegos::findOrFail($id);
-        return view('juegos.edit' , compact('juego'));
+        return view('juegos.edit' , compact('juego'), [
+            'consolas' => Consolas::pluck('NombreConsola' , 'id'),
+        ]);
     }
 
     /**

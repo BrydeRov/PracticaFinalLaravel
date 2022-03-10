@@ -41,21 +41,18 @@
             </div> 
 
             <div class="form-floating mb-3">
-              <input 
-              class="form-control" 
-              id="floatingInput"
-              type="text" 
-              name="Consola" 
-              id="Consola" 
-              placeholder="Consola" 
-              value="{{ isset($juego->Consola) ? $juego->Consola: '' }}" 
-              class="form-control form-control-sm"
-              aria-label=".form-control-sm example"
-              required
-              >
-              <label for="floatingInput">Consola</label>
-            </div>
 
+              <select name="consola_id" id="consola_id" class="form-select" aria-label="Default select example">
+                <option selected disabled>Selecciona una opción</option>
+                @foreach($consolas as $id => $NombreConsola)
+                <option value="{{$id}}">
+
+                  {{ $NombreConsola }}
+                </option>
+                @endforeach
+              </select>
+              <label for="floatingInput">Consolas</label>
+            </div>  
             <div class="form-floating mb-3">
               <input 
               class="form-control" 

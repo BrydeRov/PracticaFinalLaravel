@@ -1,19 +1,16 @@
 <?php
 
-
 namespace App\Models;
 
-use App\Models\Consolas;
+use App\Models\Juegos ;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Juegos extends Model
+class Consolas extends Model
 {
     use HasFactory;
 
-
-    
-    public function consola() {
-        return $this->belongsTo(Consolas::class);
+    public function Juegos(){
+        return $this->hasMany(Juegos::class); 
     }
 }
